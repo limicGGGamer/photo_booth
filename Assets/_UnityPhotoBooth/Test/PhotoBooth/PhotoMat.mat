@@ -28,8 +28,8 @@ Material:
     - _Brightness: 0
     - _Contrast: 1
     - _DstBlend: 10
-    - _KeyThreshold: 1
-    - _KeyTolerance: 1
+    - _KeyThreshold: 0.5
+    - _KeyTolerance: 0.2
     - _Keying: 1
     - _Opacity: 1
     - _Saturation: 1
