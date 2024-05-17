@@ -33,19 +33,29 @@ public class WebcamTool : MonoBehaviour
             Debug.Log("_____________________devices[].name: " + devices[i].name);
             
 #if UNITY_EDITOR
-            if (deviceName == devices[i].name)
+            if (!string.IsNullOrEmpty(deviceName) && deviceName == devices[i].name)
             {
                 webcamTexture = new WebCamTexture(deviceName, width, height);
                 webcamTexture.Play();
                 isValidCamFound = true;
             }
-
+            else
+            {
+                if (devices[i].isFrontFacing)
+                {
+                    webcamTexture = new WebCamTexture(devices[i].name, width, height);
+                    webcamTexture.Play();
+                    isValidCamFound = true;
+                    break;
+                }
+            }
 #else
             if (devices[i].isFrontFacing)
             {
                 webcamTexture = new WebCamTexture(devices[i].name, width, height);
                 webcamTexture.Play();
                 isValidCamFound = true;
+                break;
             }
 #endif
         }
