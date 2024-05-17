@@ -39,6 +39,7 @@ public class WebcamTool : MonoBehaviour
                 webcamTexture.Play();
                 isValidCamFound = true;
             }
+
 #else
             if (devices[i].isFrontFacing)
             {
