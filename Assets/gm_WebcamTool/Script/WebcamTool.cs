@@ -27,6 +27,8 @@ public class WebcamTool : MonoBehaviour
         ListAllDevices();
 
         // Open webcam
+#if UNITY_EDITOR
+//             
         for (int i = 0; i < devices.Length; i++)
         {
             if (deviceName == devices[i].name)
@@ -36,6 +38,13 @@ public class WebcamTool : MonoBehaviour
                 isValidCamFound = true;
             }
         }
+#else
+        for (int i = 0; i < devices.Length; i++)
+            Debug.Log("_____________________devices[].name: " + devices[i].name);
+        webcamTexture = new WebCamTexture(devices[0].name, width, height);
+        webcamTexture.Play();
+        isValidCamFound = true;
+#endif
 
         if (!isValidCamFound)
         {
