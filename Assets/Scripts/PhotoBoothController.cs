@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DanielLochner.Assets.SimpleScrollSnap;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class PhotoBoothController : MonoBehaviour
     public PhotoBooth_WebcamTool webcamTool;
     public PhotoBooth_PhotoTool photoTool;
     public PhotoAnimController photoAnimController;
+    public SimpleScrollSnap scrollSnap;
     
     public string savePath;
     private string fileName;
@@ -19,9 +21,10 @@ public class PhotoBoothController : MonoBehaviour
     public Button btn_takePhoto;
     public RawImage rImg_takenPhoto;
 
-    public RectTransform[] posMarkers;
+    // public RectTransform[] posMarkers;
     public Button[] filterBtns;
     public RectTransform[] filterPanel;
+    private RectTransform lastPanel;
     
     void Start () {
 
@@ -30,29 +33,31 @@ public class PhotoBoothController : MonoBehaviour
         photoAnimController.Init();
 
         rImg_takenPhoto.gameObject.SetActive(false);
+        for (int i = 0; i < filterBtns.Length; i++)
+        {
+            
+            int index = i;
+            scrollSnap.Add(filterBtns[index].gameObject, index);
+            scrollSnap.Panels[index].gameObject.SetActive(true);
+            scrollSnap.Panels[index].GetComponent<Button>().onClick.AddListener(() =>
+            {
+                ChangePanel(index);
+            });
+        }
+        ChangePanel(0);
+    }
 
-        Movement(filterBtns[0], posMarkers[1].position);
-        Movement(filterBtns[1], posMarkers[2].position);
-        filterPanel[0].gameObject.SetActive(true);
-        filterPanel[1].gameObject.SetActive(false);
+    private void ChangePanel(int i)
+    {
+        scrollSnap.GoToPanel(i);
+        if (lastPanel != null)
+            lastPanel.gameObject.SetActive(false);
+        filterPanel[i].gameObject.SetActive(true);
+        lastPanel = filterPanel[i];
     }
 
     void OnEnable()
     {
-        filterBtns[0].onClick.AddListener(() =>
-        {
-            Movement(filterBtns[0], posMarkers[1].position);
-            Movement(filterBtns[1], posMarkers[2].position);
-            filterPanel[0].gameObject.SetActive(true);
-            filterPanel[1].gameObject.SetActive(false);
-        });
-        filterBtns[1].onClick.AddListener(() =>
-        {
-            Movement(filterBtns[0], posMarkers[0].position);
-            Movement(filterBtns[1], posMarkers[1].position);
-            filterPanel[0].gameObject.SetActive(false);
-            filterPanel[1].gameObject.SetActive(true);
-        });
         btn_takePhoto.onClick.AddListener(HandleBtnTakePhotoClicked);
         PhotoAnimController.OnCountDownFinish += HandleCountDownFinish;
         PhotoTool.OnPhotoTaken += HandlePhotoTaken;
@@ -63,11 +68,6 @@ public class PhotoBoothController : MonoBehaviour
         btn_takePhoto.onClick.RemoveAllListeners();
         PhotoAnimController.OnCountDownFinish -= HandleCountDownFinish;
         PhotoTool.OnPhotoTaken -= HandlePhotoTaken;
-    }
-
-    private void Movement(Button btn, Vector2 targetPos)
-    {
-        btn.transform.DOMove(targetPos, 0.5f);
     }
 
     void HandleBtnTakePhotoClicked()
@@ -98,6 +98,7 @@ public class PhotoBoothController : MonoBehaviour
         // Show rImg_takenPhoto
         rImg_takenPhoto.texture = _takenPhoto;
         rImg_takenPhoto.gameObject.SetActive(true);
+        print(_takenPhoto.width);
 
 #if UNITY_EDITOR
 
