@@ -34,7 +34,7 @@ public class PhotoBoothController : MonoBehaviour
     void Start ()
     {
         camView.transform.rotation = Quaternion.Euler(Vector3.zero);
-#if !UNITY_EDITOR
+// #if !UNITY_EDITOR
         
         if (Screen.orientation == ScreenOrientation.LandscapeLeft)
         {
@@ -45,10 +45,10 @@ public class PhotoBoothController : MonoBehaviour
         {
             width = 1620;
             height = 2160;
-            camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+            camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,90));
         }
 
-#endif 
+// #endif 
 
         webcamTool.Setup(width, height);
         photoTool.Setup(width, height);
@@ -172,6 +172,10 @@ public class PhotoBoothController : MonoBehaviour
             _curOrientation = Screen.orientation;
             webcamTool.ChangeOrientation();
             photoTool.ChangeOrientation();
+            if (Screen.orientation == ScreenOrientation.LandscapeLeft)
+                camView.transform.rotation = Quaternion.Euler(Vector3.zero);
+            else if (Screen.orientation == ScreenOrientation.Portrait)
+                camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,90));
         }
     }
 }
