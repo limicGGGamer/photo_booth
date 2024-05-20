@@ -42,6 +42,7 @@ public class WebcamTool : MonoBehaviour
             webcamTexture = new WebCamTexture(device.name, width, height);
             webcamTexture.Play();
             isValidCamFound = true;
+            deviceName = device.name;
         }
 
         if (!isValidCamFound)
