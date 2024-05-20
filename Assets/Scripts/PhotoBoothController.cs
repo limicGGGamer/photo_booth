@@ -45,6 +45,13 @@ public class PhotoBoothController : MonoBehaviour
             });
         }
         ChangePanel(0);
+        scrollSnap.OnPanelCentered.AddListener((next, last) =>
+        {
+            if (lastPanel != null)
+                lastPanel.gameObject.SetActive(false);
+            filterPanel[next].gameObject.SetActive(true);
+            lastPanel = filterPanel[next];
+        });
     }
 
     private void ChangePanel(int i)
