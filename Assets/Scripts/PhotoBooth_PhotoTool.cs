@@ -6,7 +6,7 @@ public class PhotoBooth_PhotoTool : PhotoTool
 {
     public override void Init()
     {
-        (width, height) = (Screen.width, Screen.height);
+        // (width, height) = (Screen.width, Screen.height);
         base.Init();
     }
 }

@@ -20,9 +20,9 @@ public class PhotoTool : MonoBehaviour
     public virtual void Init()
     {
         tex2d_photo = new Texture2D(width, height, TextureFormat.RGB24, false);
-        //photoRegion = new Rect(startX, startY, width, height);
+        photoRegion = new Rect(startX, startY, width, height);
         // Do some math here because the coordinate of ReadPixel and GUI.DrawTexture seem to be different
-        photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
+        // photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
 
         Debug.LogWarning("PhotoUtility init with width:" + width);
     }
@@ -68,7 +68,8 @@ public class PhotoTool : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         tex2d_photo = new Texture2D(width, height, TextureFormat.RGB24, false);
-        photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
+        photoRegion = new Rect(startX, startY, width, height);
+        // photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
 
         tex2d_photo.ReadPixels(photoRegion, 0, 0);
         tex2d_photo.Apply();
