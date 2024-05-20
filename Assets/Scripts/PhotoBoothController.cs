@@ -43,7 +43,7 @@ public class PhotoBoothController : MonoBehaviour
         {
             width = 1620;
             height = 2160;
-            camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,90));
+            camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
         }
 
 
@@ -172,7 +172,7 @@ public class PhotoBoothController : MonoBehaviour
             if (Screen.orientation == ScreenOrientation.LandscapeLeft)
                 camView.transform.rotation = Quaternion.Euler(Vector3.zero);
             else if (Screen.orientation == ScreenOrientation.Portrait)
-                camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,90));
+                camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
         }
     }
 }
