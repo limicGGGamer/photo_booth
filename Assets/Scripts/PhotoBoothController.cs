@@ -25,11 +25,35 @@ public class PhotoBoothController : MonoBehaviour
     public Button[] filterBtns;
     public RectTransform[] filterPanel;
     private RectTransform lastPanel;
-    
-    void Start () {
+    public RectTransform camView; 
+    public int width = 2160;
+    public int height = 1620;
 
-        webcamTool.Init();
-        photoTool.Init();
+    private ScreenOrientation _curOrientation;
+    
+    void Start ()
+    {
+        camView.transform.rotation = Quaternion.Euler(Vector3.zero);
+#if !UNITY_EDITOR
+        
+        if (Screen.orientation == ScreenOrientation.LandscapeLeft)
+        {
+            width = 2160;
+            height = 1620;
+            camView.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }else if (Screen.orientation == ScreenOrientation.Portrait)
+        {
+            width = 1620;
+            height = 2160;
+            camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+        }
+
+#endif 
+
+        webcamTool.Setup(width, height);
+        photoTool.Setup(width, height);
+        
+        
         photoAnimController.Init();
 
         rImg_takenPhoto.gameObject.SetActive(false);
@@ -52,6 +76,8 @@ public class PhotoBoothController : MonoBehaviour
             filterPanel[next].gameObject.SetActive(true);
             lastPanel = filterPanel[next];
         });
+
+        _curOrientation = Screen.orientation;
     }
 
     private void ChangePanel(int i)
@@ -137,5 +163,15 @@ public class PhotoBoothController : MonoBehaviour
     void SharePhoto(Texture2D _takenPhoto)
     {
         new NativeShare().AddFile(_takenPhoto).SetSubject("Print Image").SetText("Printing Image...").Share();
+    }
+
+    private void Update()
+    {
+        if (Screen.orientation != _curOrientation)
+        {
+            _curOrientation = Screen.orientation;
+            webcamTool.ChangeOrientation();
+            photoTool.ChangeOrientation();
+        }
     }
 }

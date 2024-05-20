@@ -17,7 +17,7 @@ public class WebcamTool : MonoBehaviour
     public bool IsCamReady { get { return isCamReady; } }
     bool isCamReady;
 
-    WebCamTexture webcamTexture;
+    protected WebCamTexture webcamTexture;
     WebCamDevice[] devices;
 
     bool isValidCamFound;

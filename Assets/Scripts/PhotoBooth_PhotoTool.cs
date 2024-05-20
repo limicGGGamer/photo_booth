@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PhotoBooth_PhotoTool : PhotoTool
 {
-    public override void Init()
+
+    public void Setup(int w, int y)
     {
-        // (width, height) = (Screen.width, Screen.height);
-        base.Init();
+        Init();
+    }
+    public void ChangeOrientation()
+    {
+        (width, height) = (height, width);
+        
+        Init();
     }
 }
