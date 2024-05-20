@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class WebcamTool : MonoBehaviour
 {
@@ -27,37 +28,20 @@ public class WebcamTool : MonoBehaviour
         ListAllDevices();
 
         // Open webcam
-//             
-        for (int i = 0; i < devices.Length; i++)
+        WebCamDevice device = devices.ToList().Find(x => x.name == deviceName);
+
+        if (device.name != null)
         {
-            Debug.Log("_____________________devices[].name: " + devices[i].name);
-            
-#if UNITY_EDITOR
-            if (!string.IsNullOrEmpty(deviceName) && deviceName == devices[i].name)
-            {
-                webcamTexture = new WebCamTexture(deviceName, width, height);
-                webcamTexture.Play();
-                isValidCamFound = true;
-            }
-            else
-            {
-                if (devices[i].isFrontFacing)
-                {
-                    webcamTexture = new WebCamTexture(devices[i].name, width, height);
-                    webcamTexture.Play();
-                    isValidCamFound = true;
-                    break;
-                }
-            }
-#else
-            if (devices[i].isFrontFacing)
-            {
-                webcamTexture = new WebCamTexture(devices[i].name, width, height);
-                webcamTexture.Play();
-                isValidCamFound = true;
-                break;
-            }
-#endif
+            webcamTexture = new WebCamTexture(deviceName, width, height);
+            webcamTexture.Play();
+            isValidCamFound = true;
+        }
+        else
+        {
+            device = devices.ToList().Find(x => x.isFrontFacing);
+            webcamTexture = new WebCamTexture(device.name, width, height);
+            webcamTexture.Play();
+            isValidCamFound = true;
         }
 
         if (!isValidCamFound)
