@@ -7,6 +7,8 @@ public class PhotoBooth_WebcamTool : WebcamTool
 
     public void Setup(int w, int y)
     {
+        width = w;
+        height = y;
         Init();
     }
     

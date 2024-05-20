@@ -34,8 +34,6 @@ public class PhotoBoothController : MonoBehaviour
     void Start ()
     {
         camView.transform.rotation = Quaternion.Euler(Vector3.zero);
-// #if !UNITY_EDITOR
-        
         if (Screen.orientation == ScreenOrientation.LandscapeLeft)
         {
             width = 2160;
@@ -48,7 +46,6 @@ public class PhotoBoothController : MonoBehaviour
             camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,90));
         }
 
-// #endif 
 
         webcamTool.Setup(width, height);
         photoTool.Setup(width, height);
