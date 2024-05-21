@@ -159,7 +159,13 @@ public class PhotoBoothController : MonoBehaviour
 
     void SharePhoto(Texture2D _takenPhoto)
     {
-        new NativeShare().AddFile(_takenPhoto).SetSubject("Print Image").SetText("Printing Image...").Share();
+        
+        NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
+        {
+            Texture2D texture = NativeGallery.LoadImageAtPath(path);
+
+            new NativeShare().AddFile(texture).SetSubject("Print Image").SetText("Printing Image...").Share();
+        });
     }
 
     private void Update()
