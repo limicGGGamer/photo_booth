@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311924, g: 0.38073963, b: 0.3587269, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -770,6 +770,11 @@ PrefabInstance:
       propertyPath: camView
       value: 
       objectReference: {fileID: 1255927791}
+    - target: {fileID: 8016437298777527676, guid: d5832c6edc53b3c4984d1acd57b9886b,
+        type: 3}
+      propertyPath: savePath
+      value: /Users/mac/Documents/GitHub/photo_boot/Output
+      objectReference: {fileID: 0}
     - target: {fileID: 8166840574552295540, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
       propertyPath: m_IsActive
