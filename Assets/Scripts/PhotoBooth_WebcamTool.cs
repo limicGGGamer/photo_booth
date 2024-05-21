@@ -16,9 +16,9 @@ public class PhotoBooth_WebcamTool : WebcamTool
     {
         (width, height) = (height, width);
         
-        webcamTexture = new WebCamTexture(deviceName, width, height);
-        webcamTexture.Play();
-        if (targetMaterial != null)
-            SetToMaterial(targetMaterial);
+        //webcamTexture = new WebCamTexture(deviceName, width, height);
+        //webcamTexture.Play();
+        //if (targetMaterial != null)
+        //    SetToMaterial(targetMaterial);
     }
 }
