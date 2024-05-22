@@ -25,9 +25,12 @@ public class PhotoBoothController : MonoBehaviour
     public Button[] filterBtns;
     public RectTransform[] filterPanel;
     private RectTransform lastPanel;
-    public RectTransform camView; 
-    public int width = 2160;
-    public int height = 1620;
+    
+    public RectTransform camView;
+    public int width = 4032;
+    public int height = 3024;
+    // public int width = 2160;
+    // public int height = 1620;
 
     private ScreenOrientation _curOrientation;
     
@@ -36,16 +39,15 @@ public class PhotoBoothController : MonoBehaviour
         camView.transform.rotation = Quaternion.Euler(Vector3.zero);
         if (Screen.orientation == ScreenOrientation.LandscapeLeft)
         {
-            width = 2160;
-            height = 1620;
+            width = 4032;
+            height = 3024;
             camView.transform.rotation = Quaternion.Euler(Vector3.zero);
         }else if (Screen.orientation == ScreenOrientation.Portrait)
         {
-            width = 1620;
-            height = 2160;
+            width = 3024;
+            height = 4032;
             camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
         }
-
 
         webcamTool.Setup(width, height);
         photoTool.Setup(width, height);

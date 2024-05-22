@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311924, g: 0.38073963, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -500,6 +500,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 650050616090983105, guid: d5832c6edc53b3c4984d1acd57b9886b,
+        type: 3}
+      propertyPath: orthographic size
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 803599532611336532, guid: d5832c6edc53b3c4984d1acd57b9886b,
+        type: 3}
+      propertyPath: orthographic size
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1175994479611722482, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
       propertyPath: m_AspectMode
@@ -574,6 +584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 228.69995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833879262903790160, guid: d5832c6edc53b3c4984d1acd57b9886b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 2214449715179276331, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
@@ -658,7 +673,7 @@ PrefabInstance:
     - target: {fileID: 5028870551362240536, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.228
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 5028870551362240536, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
@@ -698,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 5419012017801117549, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 262
+      value: 155
       objectReference: {fileID: 0}
     - target: {fileID: 5419012017801117549, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
@@ -765,6 +780,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -206.899
       objectReference: {fileID: 0}
+    - target: {fileID: 6538023729590507419, guid: d5832c6edc53b3c4984d1acd57b9886b,
+        type: 3}
+      propertyPath: orthographic size
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 8016437298777527676, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
       propertyPath: camView
@@ -773,7 +793,7 @@ PrefabInstance:
     - target: {fileID: 8016437298777527676, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
       propertyPath: savePath
-      value: /Users/mac/Documents/GitHub/photo_boot/Output
+      value: C:\Users\user\Documents\GitHub\photo_booth\Output
       objectReference: {fileID: 0}
     - target: {fileID: 8166840574552295540, guid: d5832c6edc53b3c4984d1acd57b9886b,
         type: 3}
