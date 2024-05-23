@@ -27,26 +27,37 @@ public class PhotoBoothController : MonoBehaviour
     private RectTransform lastPanel;
     
     public RectTransform camView;
-    public int width = 4032;
-    public int height = 3024;
-    // public int width = 2160;
-    // public int height = 1620;
+    //public int width = 4032;
+    //public int height = 3024;
+     public int width = 2160;
+    public int height = 1620;
 
     private ScreenOrientation _curOrientation;
     
     void Start ()
     {
-        camView.transform.rotation = Quaternion.Euler(Vector3.zero);
+        width = Screen.width;
+        height = Screen.height;
+
+        Vector3 iconSize = Vector3.one;
+        Vector3 rawImgSize = Vector3.one;
         if (Screen.orientation == ScreenOrientation.LandscapeLeft)
         {
-            width = 4032;
-            height = 3024;
             camView.transform.rotation = Quaternion.Euler(Vector3.zero);
-        }else if (Screen.orientation == ScreenOrientation.Portrait)
+            iconSize = new Vector3(1.5f, 1.5f, 1);
+            rawImgSize = new Vector3(1.5f, 1.5f, 1);
+        }
+        else if (Screen.orientation == ScreenOrientation.Portrait)
         {
-            width = 3024;
-            height = 4032;
-            camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+            camView.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+            iconSize = Vector3.one;
+            rawImgSize = Vector3.one;
+        }
+
+        foreach (RectTransform panel in filterPanel)
+        {
+            panel.Find("Image").transform.localScale = iconSize;
+            panel.Find("RawImage").transform.localScale = rawImgSize;
         }
 
         webcamTool.Setup(width, height);
@@ -142,7 +153,7 @@ public class PhotoBoothController : MonoBehaviour
         NativeGallery.Permission permission =
             NativeGallery.SaveImageToGallery(_takenPhoto, "GGGamer_PhotoBooth", fileName);
         Debug.Log("Permission result: "+permission);
-        SharePhoto(_takenPhoto);
+        //SharePhoto(_takenPhoto);
 #endif
         // Wait for some time and go back to a playable status
         StartCoroutine(E_WaitAndReset());
@@ -178,6 +189,20 @@ public class PhotoBoothController : MonoBehaviour
                 camView.transform.rotation = Quaternion.Euler(Vector3.zero);
             else if (Screen.orientation == ScreenOrientation.Portrait)
                 camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+
+            foreach(RectTransform panel in filterPanel)
+            {
+                if(_curOrientation == ScreenOrientation.LandscapeLeft)
+                {
+                    panel.Find("Image").transform.localScale = new Vector3(1.5f, 1.5f, 1);
+                    panel.Find("RawImage").transform.localScale = new Vector3(2, 2, 1);
+                }
+                else
+                {
+                    panel.Find("Image").transform.localScale = Vector3.one;
+                    panel.Find("RawImage").transform.localScale = Vector3.one;
+                }
+            }
         }
     }
 }

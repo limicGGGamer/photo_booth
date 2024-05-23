@@ -7,8 +7,8 @@ public class PhotoTool : MonoBehaviour
     // Rect region to take screenshot
     public int startX;
     public int startY;
-    public int width;
-    public int height;
+    protected int width;
+    protected int height;
 
     Texture2D tex2d_photo;
     Rect photoRegion;
@@ -20,9 +20,9 @@ public class PhotoTool : MonoBehaviour
     public virtual void Init()
     {
         tex2d_photo = new Texture2D(width, height, TextureFormat.RGB24, false);
-        // photoRegion = new Rect(startX, startY, width, height);
+         photoRegion = new Rect(startX, startY, width, height);
         // Do some math here because the coordinate of ReadPixel and GUI.DrawTexture seem to be different
-        photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
+        //photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
 
         Debug.LogWarning("PhotoUtility init with width:" + width);
     }
@@ -36,8 +36,8 @@ public class PhotoTool : MonoBehaviour
         height = _height;
 
         tex2d_photo = new Texture2D(width, height, TextureFormat.RGB24, false);
-        //photoRegion = new Rect(startX, startY, width, height);
-        photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
+        photoRegion = new Rect(startX, startY, width, height);
+        //photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
 
         Debug.LogWarning("PhotoUtility init with width:" + _width);
     }
@@ -68,8 +68,8 @@ public class PhotoTool : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         tex2d_photo = new Texture2D(width, height, TextureFormat.RGB24, false);
-        // photoRegion = new Rect(startX, startY, width, height);
-        photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
+        photoRegion = new Rect(startX, startY, width, height);
+        //photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
 
         tex2d_photo.ReadPixels(photoRegion, 0, 0);
         tex2d_photo.Apply();
@@ -105,7 +105,9 @@ public class PhotoTool : MonoBehaviour
 #endif
         if (debugOnGUI)
         {
+            //Debug.Log($"width: {width}, height: {height}");
             photoRegion = new Rect(startX, startY, width, height);
+            //photoRegion = new Rect(startX, Screen.height - height - startY, width, height);
             GUI.color = debugRegionColor;
             GUI.DrawTexture(photoRegion, debugRegionTex);         
         }

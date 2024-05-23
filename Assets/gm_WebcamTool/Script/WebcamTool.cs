@@ -9,8 +9,8 @@ public class WebcamTool : MonoBehaviour
 
     public string deviceName = "USB Camera";
 
-    public int width = 1920;
-    public int height = 1080;
+    protected int width = 1920;
+    protected int height = 1080;
 
     public Material targetMaterial;
 
