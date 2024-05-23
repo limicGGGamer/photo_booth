@@ -44,21 +44,21 @@ public class PhotoBoothController : MonoBehaviour
         if (Screen.orientation == ScreenOrientation.LandscapeLeft)
         {
             camView.transform.rotation = Quaternion.Euler(Vector3.zero);
-            iconSize = new Vector3(1.5f, 1.5f, 1);
-            rawImgSize = new Vector3(1.5f, 1.5f, 1);
+            //iconSize = new Vector3(1.5f, 1.5f, 1);
+            //rawImgSize = new Vector3(1.5f, 1.5f, 1);
         }
         else if (Screen.orientation == ScreenOrientation.Portrait)
         {
             camView.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
-            iconSize = Vector3.one;
-            rawImgSize = Vector3.one;
+            //iconSize = Vector3.one;
+            //rawImgSize = Vector3.one;
         }
 
-        foreach (RectTransform panel in filterPanel)
-        {
-            panel.Find("Image").transform.localScale = iconSize;
-            panel.Find("RawImage").transform.localScale = rawImgSize;
-        }
+        //foreach (RectTransform panel in filterPanel)
+        //{
+        //    panel.Find("Image").transform.localScale = iconSize;
+        //    panel.Find("RawImage").transform.localScale = rawImgSize;
+        //}
 
         webcamTool.Setup(width, height);
         photoTool.Setup(width, height);
@@ -190,19 +190,19 @@ public class PhotoBoothController : MonoBehaviour
             else if (Screen.orientation == ScreenOrientation.Portrait)
                 camView.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
 
-            foreach(RectTransform panel in filterPanel)
-            {
-                if(_curOrientation == ScreenOrientation.LandscapeLeft)
-                {
-                    panel.Find("Image").transform.localScale = new Vector3(1.5f, 1.5f, 1);
-                    panel.Find("RawImage").transform.localScale = new Vector3(2, 2, 1);
-                }
-                else
-                {
-                    panel.Find("Image").transform.localScale = Vector3.one;
-                    panel.Find("RawImage").transform.localScale = Vector3.one;
-                }
-            }
+            //foreach(RectTransform panel in filterPanel)
+            //{
+            //    if(_curOrientation == ScreenOrientation.LandscapeLeft)
+            //    {
+            //        panel.Find("Image").transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            //        panel.Find("RawImage").transform.localScale = new Vector3(2, 2, 1);
+            //    }
+            //    else
+            //    {
+            //        panel.Find("Image").transform.localScale = Vector3.one;
+            //        panel.Find("RawImage").transform.localScale = Vector3.one;
+            //    }
+            //}
         }
     }
 }
